@@ -1,0 +1,17 @@
+spring:
+  profiles:
+    active: ${ENV:development}
+  datasource:
+    url: jdbc:postgresql://ec2-54-174-172-218.compute-1.amazonaws.com:5432/d7bugas5aq8p54
+    username: jbizoiwblnswbw
+    password: b20959bb8e25604ae4b93dee5e9e6d384c99b48cd8665826ec70412311b23155
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        '[format_sql]': true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    

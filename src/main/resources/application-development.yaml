@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:3320/CashDB
+    username: postgres
+    password: root
+    
