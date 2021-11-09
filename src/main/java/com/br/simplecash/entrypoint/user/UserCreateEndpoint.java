@@ -1,5 +1,7 @@
 package com.br.simplecash.entrypoint.user;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,7 +25,7 @@ public class UserCreateEndpoint {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public UserCreateResponse createUser(@RequestBody UserCreateRequest body) {
+	public UserCreateResponse createUser(@RequestBody @Valid UserCreateRequest body) {
 		User userCreated = userInteractor.create(body.toUser());
 		return new UserCreateResponse().fromUser(userCreated);
 	}
