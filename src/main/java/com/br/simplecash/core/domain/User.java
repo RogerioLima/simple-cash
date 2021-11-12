@@ -12,9 +12,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class User {
-	private Long userCode;
+	private Long code;
 	private String name;
 	private String email;
 	private LocalDate birthDate;
 	private String password;
+	private byte[] encryptedPassword;
 }

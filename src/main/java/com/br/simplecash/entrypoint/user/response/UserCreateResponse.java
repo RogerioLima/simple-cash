@@ -18,7 +18,7 @@ public class UserCreateResponse {
 	private LocalDate birthDate;
 	
 	public UserCreateResponse fromUser(User user) {
-		this.userCode = user.getUserCode();
+		this.userCode = user.getCode();
 		this.name = user.getName();
 		this.email = user.getEmail();
 		this.birthDate = user.getBirthDate();

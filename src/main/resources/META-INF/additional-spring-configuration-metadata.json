@@ -1,5 +1,12 @@
-{"properties": [{
-  "name": "env",
-  "type": "java.lang.String",
-  "description": "A description for 'env'"
-}]}
+{"properties": [
+  {
+    "name": "env",
+    "type": "java.lang.String",
+    "description": "A description for 'env'"
+  },
+  {
+    "name": "encrypt.key",
+    "type": "java.lang.String",
+    "description": "A description for 'encrypt.key'"
+  }
+]}
