@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.br.simplecash.core.exception.DuplicatedException;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -26,14 +28,20 @@ public class ApiExceptionAdvice extends ResponseEntityExceptionHandler {
 	@Autowired
 	private MessageSource messageSource;
 	
+	@ExceptionHandler(DuplicatedException.class)
+	public ResponseEntity<Object> duplicatedExceptionHandle(Exception ex, WebRequest request) {
+		HttpStatus status = HttpStatus.CONFLICT;		
+		ApiErrorBody errorBody = buildErrorBody("Valores duplicados", status.value(), ex.getMessage(), null);
+		
+		log.error(ex.getMessage(), ex);
+		
+		return handleExceptionInternal(ex, errorBody, new HttpHeaders(), status, request);
+	}
+	
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<Object> exceptionHadle(Exception ex, WebRequest request) {
 		HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
-		
-		ApiErrorBody errorBody = ApiErrorBody.builder()
-				                       .status(status.value())
-				                       .title("Erro interno no Servidor")
-				                       .build();
+		ApiErrorBody errorBody = buildErrorBody("Erro interno no Servidor", status.value(), null, null);
 		
 		log.error(ex.getMessage(), ex);
 		
@@ -64,13 +72,8 @@ public class ApiExceptionAdvice extends ResponseEntityExceptionHandler {
 			
 			fields.add(field);
 		});
-		
-		ApiErrorBody errorBody = ApiErrorBody.builder()
-        .status(status.value())
-        .title("Dados inválidos")
-        .detail("Um ou mais campos estão inválidos.")
-        .fields(fields)
-        .build();
+
+		ApiErrorBody errorBody = buildErrorBody("Dados inválidos", status.value(), "Um ou mais campos estão inválidos.", fields);
 		
 		return handleExceptionInternal(ex, errorBody, headers, status, request);
 	}
@@ -99,14 +102,18 @@ public class ApiExceptionAdvice extends ResponseEntityExceptionHandler {
 		
 		if (body == null || bodyIsString) {
 			String title = bodyIsString ? (String) body : status.getReasonPhrase();
-					
-			body = ApiErrorBody.builder()
-					            .title(title)
-					            .status(status.value())
-					            .detail(ex.getMessage())
-					            .build();
+			body = buildErrorBody(title, status.value(), ex.getMessage(), null);
 		}
 		
 		return super.handleExceptionInternal(ex, body, headers, status, request);
+	}
+	
+	private ApiErrorBody buildErrorBody(String title, int status, String detail, List<ApiErrorBody.Field> fields) {
+		return ApiErrorBody.builder()
+              .title(title)
+              .status(status)
+              .detail(detail)
+              .fields(fields)
+              .build();
 	}
 }

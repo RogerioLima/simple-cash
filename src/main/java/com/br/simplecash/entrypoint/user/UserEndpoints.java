@@ -2,6 +2,7 @@ package com.br.simplecash.entrypoint.user;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,12 +17,10 @@ import com.br.simplecash.entrypoint.user.response.UserCreateResponse;
 
 @RestController
 @RequestMapping("/api/v1/users")
-public class UserCreateEndpoint {
-	private UserCreateInteractor userInteractor;
+public class UserEndpoints {
 	
-	public UserCreateEndpoint(UserCreateInteractor userInteractor) {
-		this.userInteractor = userInteractor;
-	}
+	@Autowired
+	private UserCreateInteractor userInteractor;
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
