@@ -2,7 +2,7 @@ package com.br.simplecash.provider.repository.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.br.simplecash.core.domain.User;
 import com.br.simplecash.core.exception.DuplicatedException;
@@ -10,7 +10,7 @@ import com.br.simplecash.core.gateway.user.UserCreateGateway;
 import com.br.simplecash.provider.repository.user.repository.UserRepository;
 import com.br.simplecash.provider.repository.user.tables.UserTable;
 
-@Component
+@Service
 public class UserCreateGatewayImpl implements UserCreateGateway {
 	@Autowired
 	private UserRepository userRepository;
