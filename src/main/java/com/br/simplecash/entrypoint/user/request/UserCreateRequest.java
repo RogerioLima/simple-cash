@@ -25,6 +25,7 @@ public class UserCreateRequest {
 	@NotBlank
 	private String name;
 	
+	@NotBlank
 	@Email
 	private String email;
 	

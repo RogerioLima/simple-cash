@@ -38,14 +38,14 @@ public class UserTable {
 	private LocalDate birthDate;
 	
 	@Column(name = "PASSWORD", nullable = false)
-	private byte[] password;
+	private String password;
 	
 	public UserTable fromUser(User user) {
 		return UserTable.builder()
 				            .name(user.getName())
 				            .email(user.getEmail())
 				            .birthDate(user.getBirthDate())
-				            .password(user.getEncryptedPassword())
+				            .password(user.getPassword())
 				            .build();
 	}
 	
@@ -55,7 +55,7 @@ public class UserTable {
                .name(name)
                .email(email)
                .birthDate(birthDate)
-               .encryptedPassword(password)
+               .password(password)
                .build();
 	}
 }

@@ -6,5 +6,5 @@ import com.br.simplecash.core.domain.User;
 
 @Component
 public interface UserCreateInteractor {
-	User create(User user);
+	User execute(User user);
 }

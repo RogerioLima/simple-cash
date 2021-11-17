@@ -17,5 +17,4 @@ public class User {
 	private String email;
 	private LocalDate birthDate;
 	private String password;
-	private byte[] encryptedPassword;
 }

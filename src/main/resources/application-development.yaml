@@ -3,5 +3,5 @@ spring:
     url: jdbc:postgresql://localhost:3320/CashDB
     username: postgres
     password: root
-encrypt:
-  key: 0123456789abcdef
+token:
+  key: 5eb2a06e-5e6f-4c83-8d05-f1d7ff2decc6
