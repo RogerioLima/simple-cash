@@ -15,6 +15,8 @@ import com.br.simplecash.core.interactor.user.UserCreateInteractor;
 import com.br.simplecash.entrypoint.user.request.UserCreateRequest;
 import com.br.simplecash.entrypoint.user.response.UserCreateResponse;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/api/v1/users")
 public class UserEndpoints {
@@ -24,6 +26,7 @@ public class UserEndpoints {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
+	@ApiOperation(value = "Cadastrar novo usuário")
 	public UserCreateResponse createUser(@RequestBody @Valid UserCreateRequest body) {
 		User userCreated = userInteractor.execute(body.toUser());
 		return new UserCreateResponse().fromUser(userCreated);
