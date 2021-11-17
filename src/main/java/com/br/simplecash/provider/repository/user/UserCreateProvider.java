@@ -1,6 +1,5 @@
 package com.br.simplecash.provider.repository.user;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
@@ -11,11 +10,15 @@ import com.br.simplecash.provider.repository.user.repository.UserRepository;
 import com.br.simplecash.provider.repository.user.tables.UserTable;
 
 @Service
-public class UserCreateGatewayImpl implements UserCreateGateway {
-	@Autowired
-	private UserRepository userRepository;
+public class UserCreateProvider implements UserCreateGateway {
+	private final UserRepository userRepository;
 	
-	public User create(User user) {
+	public UserCreateProvider(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
+	
+	@Override
+	public User execute(User user) {
 		try {
 			UserTable userCreated = userRepository.save(new UserTable().fromUser(user));
 			return userCreated.toUser();

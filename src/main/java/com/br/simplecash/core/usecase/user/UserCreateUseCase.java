@@ -18,9 +18,9 @@ public class UserCreateUseCase implements UserCreateInteractor {
 	private UserCreateGateway userCreateGateway;
 	
 	@Override
-	public User create(User user) {
+	public User execute(User user) {
 		user.setPassword(encoder.encode(user.getPassword()));
 		
-		return userCreateGateway.create(user);
+		return userCreateGateway.execute(user);
 	}
 }

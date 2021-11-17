@@ -6,5 +6,5 @@ import com.br.simplecash.core.domain.User;
 
 @Component
 public interface UserCreateGateway {
-	User create(User user);
+	User execute(User user);
 }

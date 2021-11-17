@@ -1,9 +1,9 @@
 package com.br.simplecash.core.exception;
 
-public class EncryptDecryptException extends BusinessException {
+public class UnAuthorizeException extends BusinessException {
 	private static final long serialVersionUID = 1L;
 	
-	public EncryptDecryptException(String message) {
+	public UnAuthorizeException(String message) {
 		super(message);
 	}
 }

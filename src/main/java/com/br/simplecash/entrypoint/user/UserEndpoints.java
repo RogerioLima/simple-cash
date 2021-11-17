@@ -25,7 +25,7 @@ public class UserEndpoints {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public UserCreateResponse createUser(@RequestBody @Valid UserCreateRequest body) {
-		User userCreated = userInteractor.create(body.toUser());
+		User userCreated = userInteractor.execute(body.toUser());
 		return new UserCreateResponse().fromUser(userCreated);
 	}
 }
