@@ -1,6 +1,7 @@
 package com.br.simplecash.core.domain;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,4 +18,5 @@ public class User {
 	private String email;
 	private LocalDate birthDate;
 	private String password;
+	private List<Account> accounts;
 }

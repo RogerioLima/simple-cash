@@ -19,6 +19,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.br.simplecash.core.exception.DuplicatedException;
+import com.br.simplecash.core.exception.NotFoundException;
 import com.br.simplecash.core.exception.UnAuthorizeException;
 
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +29,14 @@ import lombok.extern.slf4j.Slf4j;
 public class ApiExceptionAdvice extends ResponseEntityExceptionHandler {
 	@Autowired
 	private MessageSource messageSource;
+	
+	@ExceptionHandler(NotFoundException.class)
+	public ResponseEntity<Object> entityNotFoundExceptionHandle(Exception ex, WebRequest request) {
+		HttpStatus status = HttpStatus.NOT_FOUND;
+		ApiErrorBody errorBody = buildErrorBody("Não encontrado", status.value(), ex.getMessage(), null);
+		
+		return handleExceptionInternal(ex, errorBody, new HttpHeaders(), status, request);
+	}
 	
 	@ExceptionHandler(UnAuthorizeException.class)
 	public ResponseEntity<Object> unauthorizeExceptionHandle(Exception ex, WebRequest request) {

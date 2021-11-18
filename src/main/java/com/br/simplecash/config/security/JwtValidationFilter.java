@@ -18,7 +18,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 
 public class JwtValidationFilter extends BasicAuthenticationFilter {
 	
-	private static final String HEADER_ATTRIBUTE = "Authotization";
+	private static final String HEADER_ATTRIBUTE = "Authorization";
 	private static final String PREFIX_ATTRIBUTE = "Bearer ";
 	
 	private final String tokenKey;
@@ -48,7 +48,7 @@ public class JwtValidationFilter extends BasicAuthenticationFilter {
 	private UsernamePasswordAuthenticationToken getAuthenticationToken(String token) {
 		String user = JWT.require(Algorithm.HMAC512(tokenKey))
                      .build()
-                     .verify(tokenKey)
+                     .verify(token)
                      .getSubject();
 		
 		if (user == null) {

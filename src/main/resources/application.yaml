@@ -15,5 +15,6 @@ spring:
         '[format_sql]': true
         dialect: org.hibernate.dialect.PostgreSQLDialect
 token:
-  expiration: 600000
+  expiration: 6000000
   key: ${ENCRYPT_KEY}
+  
