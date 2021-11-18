@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 import com.br.simplecash.core.domain.User;
 import com.br.simplecash.core.gateway.user.UserLoginGateway;
-import com.br.simplecash.provider.repository.user.repository.UserRepository;
+import com.br.simplecash.provider.repository.user.UserRepository;
 import com.br.simplecash.provider.repository.user.tables.UserTable;
 
 @Component

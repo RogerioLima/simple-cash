@@ -1,4 +1,4 @@
-package com.br.simplecash.provider.repository.user.repository;
+package com.br.simplecash.provider.repository.user;
 
 import java.util.Optional;
 
