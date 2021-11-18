@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.br.simplecash.core.domain.Account;
+import com.br.simplecash.core.domain.Category;
 import com.br.simplecash.core.domain.User;
 import com.br.simplecash.core.gateway.user.UserCreateGateway;
 import com.br.simplecash.core.interactor.user.UserCreateInteractor;
@@ -26,6 +27,8 @@ public class UserCreateUseCase implements UserCreateInteractor {
 		
 		Account accountDefault = Account.accountDefault();
 		user.setAccounts(Arrays.asList(accountDefault));
+		
+		user.setCategories(Category.getDefaultCategories());
 		
 		return userCreateGateway.execute(user);
 	}

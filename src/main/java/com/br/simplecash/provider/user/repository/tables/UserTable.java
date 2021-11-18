@@ -7,16 +7,20 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import com.br.simplecash.core.domain.Account;
+import com.br.simplecash.core.domain.Category;
 import com.br.simplecash.core.domain.User;
 import com.br.simplecash.provider.account.repository.tables.AccountTable;
+import com.br.simplecash.provider.category.repository.tables.CategoryTable;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -48,15 +52,28 @@ public class UserTable {
 	private String password;
 	
 	@Builder.Default
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<AccountTable> accounts = new ArrayList<>();
+	
+	@Builder.Default
+	@OneToMany(cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
+	private List<CategoryTable> categories = new ArrayList<>();
 	
 	public UserTable fromUser(User user) {
 		List<AccountTable> accounts = new ArrayList<>();
+		List<CategoryTable> categories = new ArrayList<>();
 		
 		if (user.getAccounts() != null) {
 			user.getAccounts().forEach(account -> {
 				accounts.add(new AccountTable().fromAccount(account));
+			});
+		}
+		
+		if (user.getCategories() != null) {
+			user.getCategories().forEach(category -> {
+				categories.add(new CategoryTable().fromCategory(category));
 			});
 		}
 		
@@ -66,17 +83,21 @@ public class UserTable {
 				            .birthDate(user.getBirthDate())
 				            .password(user.getPassword())
 				            .accounts(accounts)
+				            .categories(categories)
 				            .build();
 	}
 	
 	public User toUser() {
 		List<Account> accounts = new ArrayList<>();
+		List<Category> categories = new ArrayList<>();
 		
-		if (this.accounts != null) {
-			this.accounts.forEach(accountTable -> {
-				accounts.add(accountTable.toAccount());
-			});
-		}
+		this.accounts.forEach(accountTable -> {
+			accounts.add(accountTable.toAccount());
+		});
+		
+		this.categories.forEach(categoryTable -> {
+			categories.add(categoryTable.toCategory());
+		});
 		
 		return User.builder()
                .code(code)

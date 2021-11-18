@@ -19,4 +19,5 @@ public class User {
 	private LocalDate birthDate;
 	private String password;
 	private List<Account> accounts;
+	private List<Category> categories;
 }

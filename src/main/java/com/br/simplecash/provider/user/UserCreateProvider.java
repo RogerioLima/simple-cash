@@ -20,9 +20,10 @@ public class UserCreateProvider implements UserCreateGateway {
 	@Override
 	public User execute(User user) {
 		try {
-			UserTable userCreated = userRepository.save(new UserTable().fromUser(user));
+			UserTable userCreated = userRepository.saveAndFlush(new UserTable().fromUser(user));
 			return userCreated.toUser();
 		} catch (DataIntegrityViolationException ex) {
+			ex.printStackTrace();
 			throw new DuplicatedException(String.format("O e-mail %s já está cadastrado no sistema", user.getEmail()));
 		}
 	}
