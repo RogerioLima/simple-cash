@@ -1,4 +1,4 @@
-package com.br.simplecash.provider.repository.user.tables;
+package com.br.simplecash.provider.user.repository.tables;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ import javax.persistence.Table;
 
 import com.br.simplecash.core.domain.Account;
 import com.br.simplecash.core.domain.User;
-import com.br.simplecash.provider.repository.account.tables.AccountTable;
+import com.br.simplecash.provider.account.repository.tables.AccountTable;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

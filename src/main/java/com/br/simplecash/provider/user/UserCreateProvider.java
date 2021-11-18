@@ -1,4 +1,4 @@
-package com.br.simplecash.provider.repository.user;
+package com.br.simplecash.provider.user;
 
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -6,7 +6,8 @@ import org.springframework.stereotype.Service;
 import com.br.simplecash.core.domain.User;
 import com.br.simplecash.core.exception.DuplicatedException;
 import com.br.simplecash.core.gateway.user.UserCreateGateway;
-import com.br.simplecash.provider.repository.user.tables.UserTable;
+import com.br.simplecash.provider.user.repository.UserRepository;
+import com.br.simplecash.provider.user.repository.tables.UserTable;
 
 @Service
 public class UserCreateProvider implements UserCreateGateway {
