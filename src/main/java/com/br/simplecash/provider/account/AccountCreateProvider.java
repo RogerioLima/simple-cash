@@ -1,4 +1,4 @@
-package com.br.simplecash.provider.repository.account;
+package com.br.simplecash.provider.account;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -10,9 +10,9 @@ import com.br.simplecash.core.domain.User;
 import com.br.simplecash.core.exception.DuplicatedException;
 import com.br.simplecash.core.exception.NotFoundException;
 import com.br.simplecash.core.gateway.account.AccountCreateGateway;
-import com.br.simplecash.provider.repository.account.tables.AccountTable;
-import com.br.simplecash.provider.repository.user.UserRepository;
-import com.br.simplecash.provider.repository.user.tables.UserTable;
+import com.br.simplecash.provider.account.repository.tables.AccountTable;
+import com.br.simplecash.provider.user.repository.UserRepository;
+import com.br.simplecash.provider.user.repository.tables.UserTable;
 
 @Component
 public class AccountCreateProvider implements AccountCreateGateway {

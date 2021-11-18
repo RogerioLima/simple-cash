@@ -1,4 +1,4 @@
-package com.br.simplecash.provider.repository.account.tables;
+package com.br.simplecash.provider.account.repository.tables;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
