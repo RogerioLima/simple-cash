@@ -1,5 +1,5 @@
 package com.br.simplecash.core.domain;
 
 public enum TransactionTypes {
-	DESPESA, RECEITA
+	EXPENSE, INCOME
 }

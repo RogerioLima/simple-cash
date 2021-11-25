@@ -8,12 +8,14 @@ import java.lang.annotation.Target;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
+import javax.validation.constraints.NotBlank;
 
 @Target({FIELD})
 @Retention(RUNTIME)
-@Constraint(validatedBy = {DateValidator.class})
-public @interface Date {
-	String message() default "Data inválida";
+@Constraint(validatedBy = TransactionStatusValidator.class)
+@NotBlank
+public @interface TransactionStatusValidation {
+	String message() default "Status inválido.\nOs status permitidos são: PENDING e PAID";
 
 	Class<?>[] groups() default { };
 

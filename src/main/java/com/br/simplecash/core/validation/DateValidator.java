@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class DateValidator implements ConstraintValidator<Date, String> {
+public class DateValidator implements ConstraintValidator<DateValidation, String> {
 	@Override
 	public boolean isValid(String date, ConstraintValidatorContext context) {
 		try {

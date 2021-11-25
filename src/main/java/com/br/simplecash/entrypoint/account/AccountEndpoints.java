@@ -18,7 +18,7 @@ import com.br.simplecash.entrypoint.account.response.AccountCreateResponse;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/api/v1/users/{userCode}")
+@RequestMapping("/api/v1/users/{userCode}/accounts")
 public class AccountEndpoints {
 	private final AccountCreateInteractor accountCreateInteractor;
 	
@@ -26,7 +26,7 @@ public class AccountEndpoints {
 		this.accountCreateInteractor = accountCreateInteractor;
 	}
 	
-	@PostMapping("/accounts")
+	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	@ApiOperation(value = "Cadastrar nova conta")
 	public AccountCreateResponse createAccount(

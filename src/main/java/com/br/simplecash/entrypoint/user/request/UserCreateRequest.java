@@ -6,7 +6,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 import com.br.simplecash.core.domain.User;
-import com.br.simplecash.core.validation.Date;
+import com.br.simplecash.core.validation.DateValidation;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -30,7 +30,7 @@ public class UserCreateRequest {
 	private String email;
 	
 	@NotBlank
-	@Date
+	@DateValidation
 	private String birthDate;
 	
 	@NotBlank
