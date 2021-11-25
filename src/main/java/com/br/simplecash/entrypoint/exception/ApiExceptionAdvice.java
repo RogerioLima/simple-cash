@@ -61,7 +61,7 @@ public class ApiExceptionAdvice extends ResponseEntityExceptionHandler {
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<Object> exceptionHadle(Exception ex, WebRequest request) {
 		HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
-		ApiErrorBody errorBody = buildErrorBody("Erro interno no Servidor", status.value(), null, null);
+		ApiErrorBody errorBody = buildErrorBody("Erro interno no Servidor", status.value(), ex.getMessage(), null);
 		
 		log.error(ex.getMessage(), ex);
 		

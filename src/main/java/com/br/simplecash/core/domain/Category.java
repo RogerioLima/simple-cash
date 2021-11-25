@@ -19,8 +19,8 @@ public class Category {
 	
 	public static List<Category> getDefaultCategories() {
 		return Arrays.asList(
-			Category.builder().name("Lazer").type(TransactionTypes.DESPESA.toString()).build(),
-			Category.builder().name("Salario").type(TransactionTypes.RECEITA.toString()).build()
+			Category.builder().name("Lazer").type(TransactionTypes.EXPENSE.toString()).build(),
+			Category.builder().name("Salario").type(TransactionTypes.INCOME.toString()).build()
 		);
 	}
 }
